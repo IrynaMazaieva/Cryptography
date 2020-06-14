@@ -1,10 +1,11 @@
 from random import randint
 from Miller_Rabin import *
 
+
 def gen_large_prime(key_size):
     i = 0
     while i < 1000:
-        n = randint(2**(key_size - 1), 2**key_size)
+        n = randint(2 ** (key_size - 1), 2 ** key_size)
         if MR(n, 20):
             return n
         i += 1
@@ -13,11 +14,11 @@ def gen_large_prime(key_size):
 
 def gcd(a, b):
     while b != 0:
-        a, b = b, a%b
+        a, b = b, a % b
     return a
 
 
-def mult_inverse(a, b): #TODO
+def mult_inverse(a, b):
     x, y, x0, y0, a0, b0 = 0, 1, 1, 0, a, b
     while b != 0:
         q = a // b
@@ -40,8 +41,8 @@ def Keygen(key_size):
     print("q = ", q)
     assert p != 0 or q != 0
 
-    n = p*q
-    phi = (p - 1)*(q - 1)  # totient of n
+    n = p * q
+    phi = (p - 1) * (q - 1)  # totient of n
     e = randint(1, phi)
     g = gcd(e, phi)
 
